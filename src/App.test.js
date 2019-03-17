@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Adapter from "enzyme-adapter-react-16";
+import Enzyme, { mount } from "enzyme";
+
 import App from "./App";
 import Player from "./Components/Player";
 import CountriesMenu from "./Components/CountriesMenu";
-
 import { buildCountriesList } from "./Utils";
 
-import Adapter from "enzyme-adapter-react-16";
-import Enzyme, { mount } from "enzyme";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("rendering components", () => {
@@ -32,6 +32,30 @@ describe("The root App component ", () => {
     const wrapper = mount(<App />);
     expect(wrapper.find("Player")).toHaveLength(6);
   });
+
+  it("should change the coutry selected when a country is clicked", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.state().countrySelected).toEqual("Japan");
+    wrapper.find("#China").simulate("click");
+    expect(wrapper.state().countrySelected).toEqual("China");
+  });
+
+  it("should save votes when a user is clicked", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.state().votes.length).toEqual(0);
+    wrapper.find("#d5d603343b0bbbfdfb").simulate("click");
+    expect(wrapper.state().votes.length).toEqual(1);
+  });
+
+  it("should not allowed more than 3 votes", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.state().votes.length).toEqual(0);
+    wrapper.find("#d5d603343b0bbbfdfb").simulate("click");
+    wrapper.find("#sdf23339dd5d603343b0xcvx").simulate("click");
+    wrapper.find("#aaaasd333389dd5d603343b0vvbbgg").simulate("click");
+    wrapper.find("#fsd3334549dd5d603343b0zxzxzxx").simulate("click");
+    expect(wrapper.state().votes.length).toEqual(3);
+  });
 });
 
 describe("The Player component ", () => {
@@ -51,10 +75,11 @@ describe("The Player component ", () => {
 
 describe("The CountriesMenu component ", () => {
   it("should render a Button for each country", () => {
-    const countriesList = ["China", "Singapore"];
+    const countriesList = ["China", "Singapore", "Italy"];
     const wrapper = mount(<CountriesMenu countries={countriesList} />);
     expect(wrapper.text()).toContain("China");
     expect(wrapper.text()).toContain("Singapore");
+    expect(wrapper.find("button.Italy").text()).toEqual("Italy");
   });
 });
 

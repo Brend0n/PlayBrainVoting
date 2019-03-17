@@ -6,7 +6,8 @@ class Player extends Component {
     return (
       <div
         className="player-container"
-        onClick={() => this.props.vote(this.props.player)}
+        id={this.props.player.participantId}
+        onClick={() => this.props.vote(this.props.player.participantId)}
       >
         {this.props.showResult ? <span>{this.props.result}</span> : <div />}
         <img alt="Avatar Player" src={this.props.player.avatarUrl} />
