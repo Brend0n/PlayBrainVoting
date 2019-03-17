@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import Player from "./Components/Player";
+import CountriesMenu from "./Components/CountriesMenu";
 
 import { buildCountriesList } from "./Utils";
 
@@ -45,6 +46,15 @@ describe("The Player component ", () => {
     };
     const wrapper = mount(<Player player={mockUser} />);
     expect(wrapper.find("h2").text()).toContain("Narvi");
+  });
+});
+
+describe("The CountriesMenu component ", () => {
+  it("should render a Button for each country", () => {
+    const countriesList = ["China", "Singapore"];
+    const wrapper = mount(<CountriesMenu countries={countriesList} />);
+    expect(wrapper.text()).toContain("China");
+    expect(wrapper.text()).toContain("Singapore");
   });
 });
 
