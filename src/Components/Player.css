@@ -1,0 +1,41 @@
+.player-container {
+  width: 170px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.player-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-container {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.avatar {
+  margin-bottom: 10px;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(71, 81, 93);
+  border-image: initial;
+  border-radius: 50%;
+}
+
+.nickname-container {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.flag {
+  margin-left: 10px;
+  width: 30px;
+  height: 25px;
+}

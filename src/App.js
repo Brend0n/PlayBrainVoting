@@ -94,7 +94,7 @@ class App extends Component {
             })}
           </div>
         ) : (
-          <div>
+          <div className="players-container">
             {this.state.playerDisplayed.map((player, index) => {
               return (
                 <Player
