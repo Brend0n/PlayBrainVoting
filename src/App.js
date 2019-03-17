@@ -62,9 +62,7 @@ class App extends Component {
               player={item}
               key={index}
               vote={this.vote}
-              isSelected={() => {
-                this.state.votes.includes(item.participantId);
-              }}
+              isSelected={this.state.votes.includes(item.participantId)}
             />
           );
         })}

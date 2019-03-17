@@ -56,6 +56,17 @@ describe("The root App component ", () => {
     wrapper.find("#fsd3334549dd5d603343b0zxzxzxx").simulate("click");
     expect(wrapper.state().votes.length).toEqual(3);
   });
+
+  it("should display which user are selected", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.find("#d5d603343b0bbbfdfb").hasClass("selected")).toEqual(
+      false
+    );
+    wrapper.find("#d5d603343b0bbbfdfb").simulate("click");
+    expect(wrapper.find("#d5d603343b0bbbfdfb").hasClass("selected")).toEqual(
+      true
+    );
+  });
 });
 
 describe("The Player component ", () => {

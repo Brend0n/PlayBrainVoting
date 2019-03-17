@@ -5,7 +5,10 @@ class Player extends Component {
   render() {
     return (
       <div
-        className="player-container"
+        className={
+          "player-container " +
+          (this.props.isSelected ? "selected" : "not-selected")
+        }
         id={this.props.player.participantId}
         onClick={() => this.props.vote(this.props.player.participantId)}
       >
@@ -18,7 +21,11 @@ class Player extends Component {
             src={countriesFlag[this.props.player.country]}
           />
         </h2>
-        {this.props.isSelected ? <span>SELECTED</span> : <div />}
+        {this.props.isSelected ? (
+          <span>SELECTED</span>
+        ) : (
+          <span>NOT SELECTED</span>
+        )}
 
         <p>{this.props.player.message}</p>
       </div>
