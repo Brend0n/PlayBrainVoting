@@ -47,6 +47,25 @@ describe("The root App component ", () => {
     expect(wrapper.state().votes.length).toEqual(1);
   });
 
+  it("should display the number of votes left", () => {
+    const wrapper = mount(<App />);
+    wrapper.find("#vote-left").simulate("click");
+    expect(wrapper.find("#vote-left").text()).toEqual(
+      "You have 3 vote(s) left"
+    );
+    wrapper.find("#d5d603343b0bbbfdfb").simulate("click");
+    expect(wrapper.find("#vote-left").text()).toEqual(
+      "You have 2 vote(s) left"
+    );
+  });
+
+  it("should reset the votes when a country is clicked", () => {
+    const wrapper = mount(<App />);
+    wrapper.find("#d5d603343b0bbbfdfb").simulate("click");
+    wrapper.find("#China").simulate("click");
+    expect(wrapper.state().votes.length).toEqual(0);
+  });
+
   it("should not allowed more than 3 votes", () => {
     const wrapper = mount(<App />);
     expect(wrapper.state().votes.length).toEqual(0);
@@ -66,6 +85,28 @@ describe("The root App component ", () => {
     expect(wrapper.find("#d5d603343b0bbbfdfb").hasClass("selected")).toEqual(
       true
     );
+  });
+
+  it("should have a button to switch user/admin", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.state().isAdmin).toBeFalsy();
+    wrapper.find("#user-switch").simulate("click");
+    expect(wrapper.state().isAdmin).toBeTruthy();
+  });
+
+  it("should have a button to close the votes available when log as admin", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.exists("#close-vote")).toBeFalsy();
+    wrapper.find("#user-switch").simulate("click");
+    expect(wrapper.exists("#close-vote")).toBeTruthy();
+  });
+
+  it("should have a button to close the votes", () => {
+    const wrapper = mount(<App />);
+    wrapper.find("#user-switch").simulate("click");
+    expect(wrapper.state().isVoteClosed).toBeFalsy();
+    wrapper.find("#close-vote").simulate("click");
+    expect(wrapper.state().isVoteClosed).toBeTruthy();
   });
 });
 
@@ -90,7 +131,7 @@ describe("The CountriesMenu component ", () => {
     const wrapper = mount(<CountriesMenu countries={countriesList} />);
     expect(wrapper.text()).toContain("China");
     expect(wrapper.text()).toContain("Singapore");
-    expect(wrapper.find("button.Italy").text()).toEqual("Italy");
+    expect(wrapper.find("#Italy").text()).toEqual("Italy");
   });
 });
 

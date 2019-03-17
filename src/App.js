@@ -16,7 +16,9 @@ class App extends Component {
       playerDisplayed: playersMock.filter(
         player => countriesDict[player.country] === "Japan"
       ),
-      votes: []
+      votes: [],
+      isAdmin: false,
+      isVoteClosed: false
     };
   }
 
@@ -52,20 +54,59 @@ class App extends Component {
         <p id="vote-left">
           You have {3 - this.state.votes.length} vote(s) left
         </p>
+        {this.state.isAdmin ? (
+          <button
+            id="close-vote"
+            onClick={() => {
+              this.setState({ isVoteClosed: true });
+            }}
+          >
+            Close Votation
+          </button>
+        ) : null}
+
+        <button
+          id="user-switch"
+          onClick={() => {
+            this.setState({
+              isAdmin: !this.state.isAdmin
+            });
+          }}
+        >
+          {this.state.isAdmin ? "Switch to User" : "Switch to Admin"}
+        </button>
+
         <CountriesMenu
           countries={this.state.countriesList}
+          countrySelected={this.state.countrySelected}
           changeCountry={this.changeCountry}
         />
-        {this.state.playerDisplayed.map((item, index) => {
-          return (
-            <Player
-              player={item}
-              key={index}
-              vote={this.vote}
-              isSelected={this.state.votes.includes(item.participantId)}
-            />
-          );
-        })}
+        {this.state.isVoteClosed ? (
+          <div>
+            {playersMock.map((player, index) => {
+              return (
+                <Player
+                  player={player}
+                  key={index}
+                  isQualified={this.state.votes.includes(player.participantId)}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div>
+            {this.state.playerDisplayed.map((player, index) => {
+              return (
+                <Player
+                  player={player}
+                  key={index}
+                  vote={this.vote}
+                  isSelected={this.state.votes.includes(player.participantId)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }

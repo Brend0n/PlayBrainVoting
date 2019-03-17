@@ -7,7 +7,9 @@ class CountriesMenu extends Component {
         {this.props.countries.map((country, index) => {
           return (
             <button
-              className={country}
+              className={
+                this.props.countrySelected === country ? "country-selected" : ""
+              }
               id={country}
               onClick={() => this.props.changeCountry(country)}
               key={index}

@@ -7,7 +7,9 @@ class Player extends Component {
       <div
         className={
           "player-container " +
-          (this.props.isSelected ? "selected" : "not-selected")
+          (this.props.isSelected ? "selected" : "") +
+          " " +
+          (this.props.isQualified ? "qualified" : "")
         }
         id={this.props.player.participantId}
         onClick={() => this.props.vote(this.props.player.participantId)}
