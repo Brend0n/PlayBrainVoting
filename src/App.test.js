@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Player from "./Components/Player";
 
+import { buildCountriesList } from "./Utils";
+
 import Adapter from "enzyme-adapter-react-16";
 import Enzyme, { mount } from "enzyme";
 Enzyme.configure({ adapter: new Adapter() });
@@ -39,5 +41,12 @@ describe("The Player component ", () => {
     };
     const wrapper = mount(<Player player={mockUser} />);
     expect(wrapper.find("h2").text()).toContain("Narvi");
+  });
+});
+
+describe("The Utils function ", () => {
+  it("should build a list a countries", () => {
+    let countriesList = buildCountriesList();
+    expect(countriesList.length).toEqual(4);
   });
 });
