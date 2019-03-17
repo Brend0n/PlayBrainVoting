@@ -20,12 +20,16 @@ describe("rendering components", () => {
 describe("The root App component ", () => {
   it("should render the Title of the of the App", () => {
     const wrapper = mount(<App />);
-    expect(wrapper.find("h2").text().length > 0).toBeTruthy();
     expect(
       wrapper.contains(
         <h2>Vote for players to represent your region's team</h2>
       )
     ).toBeTruthy();
+  });
+
+  it("should render the Player Component", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.find("Player")).toHaveLength(6);
   });
 });
 
