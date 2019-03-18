@@ -1,5 +1,15 @@
 export const playersMock = [
   {
+    teams: "es",
+    participantId: "d5d603343b0bbbfdfb",
+    avatarUrl:
+      "https://cdn.dekki.com/uploads/users/5a7483dbe589dd5d603343b0/avatar/original",
+    nickname: "Thrain",
+    message: "百萬象迷站出來!!!(最好成績大概是2018年二月賽季亞服#1)",
+    country: "jp",
+    likes: 321
+  },
+  {
     teams: "zh",
     participantId: "5a73dbd603343b0dsfgsdfg",
     avatarUrl:
@@ -19,16 +29,6 @@ export const playersMock = [
       "I'm the anchor/captain of the Singapore team that is going to BlizzCon for the HGG Playoffs, and I also recently finished 5th in the HCT APAC Fall Playoffs. Definitely one of the best players in SEA, so please vote for me, you know you want me in the team!",
     country: "sp",
     likes: 43
-  },
-  {
-    teams: "es",
-    participantId: "d5d603343b0bbbfdfb",
-    avatarUrl:
-      "https://cdn.dekki.com/uploads/users/5a7483dbe589dd5d603343b0/avatar/original",
-    nickname: "Thrain",
-    message: "百萬象迷站出來!!!(最好成績大概是2018年二月賽季亞服#1)",
-    country: "jp",
-    likes: 321
   },
   {
     teams: "jp",

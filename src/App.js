@@ -47,64 +47,82 @@ class App extends Component {
   };
 
   render() {
-    // console.log("COUNTRY", this.state.countriesList);
     return (
       <div className="App">
-        <h2>Vote for players to represent your region's team</h2>
-        <p id="vote-left">
-          You have {3 - this.state.votes.length} vote(s) left
-        </p>
-        {this.state.isAdmin ? (
+        <div className="admin-menu">
           <button
-            id="close-vote"
+            id="user-switch"
             onClick={() => {
-              this.setState({ isVoteClosed: true });
+              this.setState({
+                isAdmin: !this.state.isAdmin
+              });
             }}
           >
-            Close Votation
+            {this.state.isAdmin ? "Switch to User" : "Switch to Admin"}
           </button>
-        ) : null}
+          {this.state.isAdmin ? (
+            <button
+              id="close-vote"
+              onClick={() => {
+                this.setState({ isVoteClosed: true });
+              }}
+            >
+              Close Votation
+            </button>
+          ) : null}
+        </div>
 
-        <button
-          id="user-switch"
-          onClick={() => {
-            this.setState({
-              isAdmin: !this.state.isAdmin
-            });
-          }}
-        >
-          {this.state.isAdmin ? "Switch to User" : "Switch to Admin"}
-        </button>
-
-        <CountriesMenu
-          countries={this.state.countriesList}
-          countrySelected={this.state.countrySelected}
-          changeCountry={this.changeCountry}
-        />
         {this.state.isVoteClosed ? (
           <div>
-            {playersMock.map((player, index) => {
-              return (
-                <Player
-                  player={player}
-                  key={index}
-                  isQualified={this.state.votes.includes(player.participantId)}
-                />
-              );
-            })}
+            <h2>Votation closed</h2>
+            <p>Results of voting:</p>
+            <div className="players-container">
+              {playersMock.map((player, index) => {
+                return (
+                  <Player
+                    player={player}
+                    key={index}
+                    isQualified={this.state.votes.includes(
+                      player.participantId
+                    )}
+                    isSelected={false}
+                    vote={() => {}}
+                    isVoteClosed={true}
+                  />
+                );
+              })}
+            </div>
           </div>
         ) : (
-          <div className="players-container">
-            {this.state.playerDisplayed.map((player, index) => {
-              return (
-                <Player
-                  player={player}
-                  key={index}
-                  vote={this.vote}
-                  isSelected={this.state.votes.includes(player.participantId)}
-                />
-              );
-            })}
+          <div>
+            <h2>Vote for players to represent your region's team</h2>
+            <p />
+            <CountriesMenu
+              countries={this.state.countriesList}
+              countrySelected={this.state.countrySelected}
+              changeCountry={this.changeCountry}
+            />
+            <p id="vote-left">
+              Click on up to 3 Players to place your votes. (
+              {3 - this.state.votes.length} vote(s) remaining).
+              <br />
+              The remainder of your votes must be for{" "}
+              {this.state.countrySelected}
+            </p>
+            <div className="players-container">
+              {this.state.playerDisplayed.map((player, index) => {
+                return (
+                  <Player
+                    player={player}
+                    key={index}
+                    isQualified={false}
+                    isSelected={this.state.votes.includes(player.participantId)}
+                    vote={this.vote}
+                    isVoteClosed={false}
+                  />
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

@@ -108,6 +108,14 @@ describe("The root App component ", () => {
     wrapper.find("#close-vote").simulate("click");
     expect(wrapper.state().isVoteClosed).toBeTruthy();
   });
+
+  it("should display the qualified player when vote is closed", () => {
+    const wrapper = mount(<App />);
+    wrapper.find("#d5d603343b0bbbfdfb").simulate("click");
+    wrapper.find("#user-switch").simulate("click");
+    wrapper.find("#close-vote").simulate("click");
+    expect(wrapper.text()).toContain("Qualified");
+  });
 });
 
 describe("The Player component ", () => {
@@ -121,7 +129,7 @@ describe("The Player component ", () => {
       country: "sp"
     };
     const wrapper = mount(<Player player={mockUser} />);
-    expect(wrapper.find("h2").text()).toContain("Narvi");
+    expect(wrapper.find(".nickname").text()).toContain("Narvi");
   });
 });
 

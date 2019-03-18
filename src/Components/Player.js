@@ -8,38 +8,38 @@ class Player extends Component {
       <div
         className={
           "player-container " +
-          (this.props.isSelected ? "selected" : "") +
-          " " +
-          (this.props.isQualified ? "qualified" : "")
+          (this.props.isSelected || this.props.isVoteClosed
+            ? ""
+            : "player-on-hover")
         }
-        id={this.props.player.participantId}
         onClick={() => this.props.vote(this.props.player.participantId)}
       >
         <div className="player-data">
-          {this.props.showResult ? <span>{this.props.result}</span> : <div />}
-          <img
-            className="avatar"
-            alt="Avatar Player"
-            src={this.props.player.avatarUrl}
-          />
-          <div className="nickname-container">
-            <span className="nickname">
-              {this.props.player.nickname}{" "}
-              <img
-                className="flag"
-                alt="Player Flag"
-                src={countriesFlag[this.props.player.country]}
-              />
-            </span>
+          <div className="avatar-container">
+            {this.props.showResult ? <span>{this.props.result}</span> : null}
+            <img
+              id={this.props.player.participantId}
+              className={"avatar " + (this.props.isSelected ? "selected" : "")}
+              alt={"Avatar Player " + this.props.player.nickname}
+              src={this.props.player.avatarUrl}
+            />
+            {this.props.isSelected ? (
+              <span className={"marker-selected"}>Selected</span>
+            ) : null}
+            {this.props.isQualified ? (
+              <span className={"marker-qualified"}>Qualified</span>
+            ) : null}
           </div>
-          {this.props.isSelected ? (
-            <span>SELECTED</span>
-          ) : (
-            <span>NOT SELECTED</span>
-          )}
-
-          <p>{this.props.player.message}</p>
+          <div className="nickname-container">
+            <span className="nickname">{this.props.player.nickname} </span>
+            <img
+              className="flag"
+              alt={"flag " + this.props.player.country}
+              src={countriesFlag[this.props.player.country]}
+            />
+          </div>
         </div>
+        <p className="description">{this.props.player.message}</p>
       </div>
     );
   }

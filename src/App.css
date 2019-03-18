@@ -1,5 +1,6 @@
 .App {
-  height: 100%;
+  height: -webkit-fill-available;
+  min-height: 100%;
   width: 100%;
   padding: 20px;
   background: rgb(35, 41, 47);
@@ -15,4 +16,8 @@
   flex-wrap: wrap;
   -webkit-box-pack: center;
   justify-content: center;
+}
+
+.admin-menu {
+  text-align: left;
 }
