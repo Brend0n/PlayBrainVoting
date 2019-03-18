@@ -1,4 +1,4 @@
-#Playbrain Front-End Coding Exercise
+# Playbrain Front-End Coding Exercise
 This Project was deveopped using the React framework, and intend to reproduce the voting system found on the [Dekki.com](https://dekki.com/en/tournaments/t/rumblestone/voting) website.
 
 This project has beeen deployed on the Heroku Platform [https://playbrain.herokuapp.com/](https://playbrain.herokuapp.com/)
