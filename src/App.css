@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(35, 41, 47);
+}
+
 .App {
   height: -webkit-fill-available;
   min-height: 100%;
