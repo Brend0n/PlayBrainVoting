@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import { playersMock } from "./assets/players_teams";
+import { countriesDict } from "./Assets/countries";
+import { playersMock } from "./Assets/players_teams";
 import Player from "./Components/Player";
 import CountriesMenu from "./Components/CountriesMenu";
 import { buildCountriesList } from "./Utils";
-import { countriesDict } from "./assets/countries";
 
 class App extends Component {
   constructor() {

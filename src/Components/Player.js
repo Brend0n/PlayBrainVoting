@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { countriesFlag } from "../assets/countries";
+import { countriesFlag } from "../Assets/countries";
 import "./Player.css";
 
 class Player extends Component {

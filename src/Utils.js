@@ -1,5 +1,5 @@
-import { countriesDict } from "./assets/countries";
-import { playersMock } from "./assets/players_teams";
+import { countriesDict } from "./Assets/countries";
+import { playersMock } from "./Assets/players_teams";
 
 function buildCountriesList() {
   let tempCountries = [];
