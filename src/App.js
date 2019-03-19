@@ -118,7 +118,7 @@ class App extends Component {
                     isQualified={false}
                     isSelected={this.state.votes.includes(player.participantId)}
                     vote={this.vote}
-                    isVoteClosed={false}
+                    isVoteClosed={this.state.votes.length < 3 ? false : true}
                   />
                 );
               })}
